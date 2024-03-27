@@ -9,9 +9,16 @@ const mainWindow = createMainWindow();
 const globalApp = new App({
 	app,
 	events: {
-		onReady: () => mainWindow.run(),
-		onActivate: () => mainWindow.run(),
 		onWinAllClosed: () => mainWindow.stop(false),
+		onActivate: () => mainWindow.tryShow(),
+
+		onReady: async () => {
+			const { i18n } = await import('./localization/i18next');
+
+			i18n.on('initialized', () => {
+				mainWindow.run();
+			});
+		},
 	},
 });
 

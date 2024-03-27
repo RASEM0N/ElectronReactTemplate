@@ -38,6 +38,10 @@ export class Win {
 		this.addEventListeners();
 	}
 
+	public tryShow() {
+		this.browser?.show();
+	}
+
 	public stop(canDestroy: boolean) {
 		if (canDestroy) {
 			this.browser?.webContents.removeAllListeners();

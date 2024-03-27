@@ -13,7 +13,7 @@ export default defineConfig(({ command }) => {
 	const isBuild = command === 'build';
 	const needSourcemap = isServe || !!process.env.VSCODE_DEBUG;
 
-	fs.rmSync('dist-electron', { recursive: true, force: true });
+	// fs.rmSync('dist-electron', { recursive: true, force: true });
 
 	return {
 		resolve: {
