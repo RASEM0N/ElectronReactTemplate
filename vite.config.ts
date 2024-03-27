@@ -15,6 +15,10 @@ export default defineConfig(({ command }) => {
 
 	// fs.rmSync('dist-electron', { recursive: true, force: true });
 
+	const htmlEnvs = {
+		APP_TITLE: packageJson.productName,
+	};
+
 	return {
 		resolve: {
 			alias: {
@@ -59,7 +63,10 @@ export default defineConfig(({ command }) => {
 			{
 				name: 'inject-env-html',
 				transformIndexHtml(html: string) {
-					return html.replace('%APP_TITLE%', packageJson.productName);
+					return Object.entries(htmlEnvs).reduce(
+						(r, [k, v]) => r.replace(`%${k}%`, v),
+						html,
+					);
 				},
 			},
 		],

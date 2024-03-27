@@ -12,7 +12,7 @@ if (!rootRef) {
 const root = createRoot(rootRef);
 root.render(
 	<I18nextProvider i18n={i18n}>
-		<h2>Привет</h2>;
+		<h2>Привет</h2>
 	</I18nextProvider>,
 );
 
