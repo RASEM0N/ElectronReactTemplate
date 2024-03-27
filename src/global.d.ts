@@ -1,4 +1,5 @@
 
+/* globals */
 declare interface Window {
 
 	/* Preload */
