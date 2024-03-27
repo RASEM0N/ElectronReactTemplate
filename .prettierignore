@@ -2,7 +2,9 @@
 .vs-code
 
 node_modules
-build/
-dist/
+dist
+dist-electron
+release
 
 *.md
+*.local

@@ -1,6 +1,10 @@
+.idea
+.vs-code
+
 node_modules
 dist
-dist-ssr
 dist-electron
 release
+
+*.md
 *.local

@@ -1,13 +1,13 @@
 import { defineConfig } from 'vite';
 import path from 'node:path';
-import fs from 'node:fs';
 import electron from 'vite-plugin-electron/simple';
 import react from '@vitejs/plugin-react';
+import packageJson from './package.json';
 
 // https://vitejs.dev/config/
 // https://github.com/electron-vite/electron-vite-react/blob/main/vite.config.ts
 export default defineConfig(({ command }) => {
-	const distPath = 'dist-electron';
+	const distElectron = 'dist-electron';
 
 	const isServe = command === 'serve';
 	const isBuild = command === 'build';
@@ -25,7 +25,7 @@ export default defineConfig(({ command }) => {
 
 		define: {
 			__PUBLIC_PATH__: JSON.stringify('.'),
-			__IS_DEV__: JSON.stringify(isServe)
+			__IS_DEV__: JSON.stringify(isServe),
 		},
 
 		plugins: [
@@ -37,7 +37,7 @@ export default defineConfig(({ command }) => {
 						build: {
 							sourcemap: needSourcemap,
 							minify: isBuild,
-							outDir: `${distPath}/main`,
+							outDir: `${distElectron}/main`,
 						},
 					},
 				},
@@ -48,7 +48,7 @@ export default defineConfig(({ command }) => {
 						build: {
 							sourcemap: needSourcemap ? 'inline' : undefined,
 							minify: isBuild,
-							outDir: `${distPath}/preload`,
+							outDir: `${distElectron}/preload`,
 						},
 					},
 				},
@@ -56,6 +56,12 @@ export default defineConfig(({ command }) => {
 				// https://github.com/electron-vite/vite-plugin-electron-renderer
 				renderer: {},
 			}),
+			{
+				name: 'inject-env-html',
+				transformIndexHtml(html: string) {
+					return html.replace('%APP_TITLE%', packageJson.productName);
+				},
+			},
 		],
 	};
 });

@@ -1,7 +1,10 @@
 {
-  "name": "electron-react-app",
-  "private": true,
+  "name": "application",
+  "productName": "Electron react app",
+  "desktopName": "application.desktop",
+  "description": "Electron react application",
   "version": "0.0.0",
+  "private": true,
   "main": "dist-electron/main/index.js",
   "scripts": {
     "dev": "vite",
