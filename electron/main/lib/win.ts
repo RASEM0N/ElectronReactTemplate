@@ -1,4 +1,4 @@
-import { BrowserWindow } from 'electron';
+import { BrowserWindow, shell } from 'electron';
 import type { BrowserWindowConstructorOptions } from 'electron';
 
 interface WindowOptions extends BrowserWindowConstructorOptions {
@@ -70,6 +70,13 @@ export class Win {
 			return;
 		}
 
+		// чтоб все ссылки открывались в браузере
+		this.browser.webContents.setWindowOpenHandler(({ url }) => {
+			if (url.startsWith('https:')) {
+				shell.openExternal(url);
+			}
+			return { action: 'deny' };
+		});
 		this.events.onShow?.(this.browser);
 	}
 }

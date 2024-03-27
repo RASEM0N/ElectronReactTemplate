@@ -19,7 +19,13 @@ export default defineConfig(({ command }) => {
 		resolve: {
 			alias: {
 				'@': path.join(__dirname, 'src'),
+				'~': path.join(__dirname, 'public'),
 			},
+		},
+
+		define: {
+			__PUBLIC_PATH__: JSON.stringify('.'),
+			__IS_DEV__: JSON.stringify(isServe)
 		},
 
 		plugins: [

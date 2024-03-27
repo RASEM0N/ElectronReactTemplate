@@ -1,7 +1,7 @@
 ## Electron react application
 - https://electron-vite.github.io/
 - https://github.com/electron-vite
-
+- https://codesandbox.io/p/devbox/secure-electron-template-79fgss?file=%2Fapp%2Fsrc%2Findex.html
 
 ## Expanding the ESLint configuration
 
