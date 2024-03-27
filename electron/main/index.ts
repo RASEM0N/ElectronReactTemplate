@@ -13,11 +13,14 @@ const globalApp = new App({
 		onActivate: () => mainWindow.tryShow(),
 
 		onReady: async () => {
-			const { i18n } = await import('./localization/i18next');
+			// Локализаци пока что не нужна
+			// const { i18n } = await import('./localization/i18next');
+			//
+			// i18n.on('initialized', () => {
+			// 	mainWindow.run();
+			// });
 
-			i18n.on('initialized', () => {
-				mainWindow.run();
-			});
+			mainWindow.run();
 		},
 	},
 });
