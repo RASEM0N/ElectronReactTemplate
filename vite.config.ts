@@ -3,6 +3,7 @@ import path from 'node:path';
 import electron from 'vite-plugin-electron/simple';
 import react from '@vitejs/plugin-react';
 import packageJson from './package.json';
+import { pathsLoader } from './vite/plugins/vite-paths-loader';
 
 // https://vitejs.dev/config/
 // https://github.com/electron-vite/electron-vite-react/blob/main/vite.config.ts
@@ -15,22 +16,22 @@ export default defineConfig(({ command }) => {
 
 	// fs.rmSync('dist-electron', { recursive: true, force: true });
 
+	const alias = {
+		'@': path.join(__dirname, 'src'),
+		'~': path.join(__dirname, 'public'),
+	};
+
+	const define = {
+		__PUBLIC_PATH__: JSON.stringify('.'),
+		__IS_DEV__: JSON.stringify(isServe),
+	};
+
 	const htmlEnvs = {
 		APP_TITLE: packageJson.productName,
 	};
 
 	return {
-		resolve: {
-			alias: {
-				'@': path.join(__dirname, 'src'),
-				'~': path.join(__dirname, 'public'),
-			},
-		},
-
-		define: {
-			__PUBLIC_PATH__: JSON.stringify('.'),
-			__IS_DEV__: JSON.stringify(isServe),
-		},
+		resolve: { alias },
 
 		plugins: [
 			react(),
@@ -38,22 +39,26 @@ export default defineConfig(({ command }) => {
 				main: {
 					entry: 'electron/main/index.ts',
 					vite: {
+						define,
 						build: {
 							sourcemap: needSourcemap,
 							minify: isBuild,
 							outDir: `${distElectron}/main`,
 						},
+						plugins: [pathsLoader()],
 					},
 				},
 
 				preload: {
 					input: path.join(__dirname, 'electron/preload/index.ts'),
 					vite: {
+						define,
 						build: {
 							sourcemap: needSourcemap ? 'inline' : undefined,
 							minify: isBuild,
 							outDir: `${distElectron}/preload`,
 						},
+						plugins: [pathsLoader()],
 					},
 				},
 
