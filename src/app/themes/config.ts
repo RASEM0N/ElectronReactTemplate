@@ -1,4 +1,4 @@
-import type { ThemeSwapperConfig } from '@/app/themes/types';
+import type { ThemeSwapperConfig } from '@src/app/themes/types';
 import { lightTheme } from './_lightTheme';
 import { darkTheme } from './_darkTheme';
 

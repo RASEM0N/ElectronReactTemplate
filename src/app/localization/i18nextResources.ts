@@ -2,8 +2,8 @@ import type { InitOptions } from 'i18next';
 import { Languages } from './i18nextDefine';
 
 /** translations **/
-import enCommon from '~/locales/en-US/common.json';
-import ruCommon from '~/locales/ru-RU/common.json';
+import enCommon from '@public/locales/en-US/common.json';
+import ruCommon from '@public/locales/ru-RU/common.json';
 
 /* Пока что как то так. Лучше конечно через Electron получать это */
 export const resourcesOptions: InitOptions = {

@@ -1,6 +1,6 @@
 // всякое бывает ...
-import { RootStoreContext } from '@/app/rootStore';
-import type { RootStore } from '@/app/rootStore';
+import { RootStoreContext } from '@src/app/rootStore';
+import type { RootStore } from '@src/app/rootStore';
 import { useContext } from 'react';
 
 export const useRootStore = (): RootStore => {
