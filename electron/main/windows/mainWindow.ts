@@ -1,6 +1,6 @@
 import { join } from 'path';
-import { Win } from '../lib/win';
-import { ENVS } from '../const/process';
+import { Win } from '@electron/main/lib/win';
+import { ENVS } from '@electron/main/const/process';
 
 import iconPath from '~/assets/electron-vite.svg?path'
 

@@ -22,8 +22,9 @@
     "noFallthroughCasesInSwitch": true,
     "baseUrl": "./",
     "paths": {
-      "@/*": ["src/*"],
-      "~/*": ["public/*"]
+      "@src/*": ["src/*"],
+      "@public/*": ["public/*"],
+      "@electron/*": ["electron/*"]
     }
   },
   "include": ["src", "electron"],

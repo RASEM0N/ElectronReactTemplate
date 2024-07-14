@@ -13,7 +13,7 @@ import path from 'node:path';
 
 // 🚧 Use ['ENV_NAME'] avoid vite:define plugin - Vite@2.x
 const SERVER = process.env['VITE_DEV_SERVER_URL'] as string;
-const DIST = path.join(__dirname, '../dist');
+const DIST = path.join(__dirname, '../dist-electron');
 const PUBLIC = app.isPackaged ? DIST : path.join(DIST, '../public');
 
 export const ENVS = {
