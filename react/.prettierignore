@@ -1,0 +1,10 @@
+.idea
+.vs-code
+
+node_modules
+dist
+dist-electron
+release
+
+*.md
+*.local
