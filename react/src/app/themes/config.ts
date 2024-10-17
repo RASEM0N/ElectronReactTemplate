@@ -1,6 +1,6 @@
-import type { ThemeSwapperConfig } from '@src/app/themes/types';
-import { lightTheme } from './_lightTheme';
-import { darkTheme } from './_darkTheme';
+import type { ThemeSwapperConfig } from './types';
+import { theme as lightTheme } from './themes/light';
+import { theme as darkTheme } from './themes/dark';
 
 export enum THEMES {
 	light = 'base',
@@ -15,12 +15,13 @@ export const themesConfig: ThemeSwapperConfig = {
 	themes: [
 		{
 			name: THEMES.light,
-			selectors: [':root', `[data-theme="${THEMES.light}"]`],
+			selectors: [':root'],
 			theme: lightTheme,
 		},
 		{
 			name: THEMES.dark,
-			selectors: [`[data-theme="${THEMES.dark}"]`],
+			selectors: [`[data-theme="dark"]`],
+			mediaQuery: '@media (prefers-color-scheme: dark)',
 			theme: darkTheme,
 		},
 	],

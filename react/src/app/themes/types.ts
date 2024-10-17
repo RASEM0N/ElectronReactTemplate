@@ -10,4 +10,10 @@ export interface ThemeConfig {
 }
 
 export interface ThemeVariables {
+	colors: ThemeColors;
+	spacing?: ThemeSpacing;
 }
+
+export interface ThemeSpacing {}
+
+export interface ThemeColors {}

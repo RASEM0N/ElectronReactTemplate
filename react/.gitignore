@@ -26,3 +26,4 @@ release
 *.sw?
 
 *storybook.log
+*.missing.json

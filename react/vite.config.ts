@@ -5,17 +5,8 @@ import packageJson from './package.json';
 import { injectEnvHtml } from './vite/plugins/inject-env-html';
 
 // https://vitejs.dev/config/
-// https://github.com/electron-vite/electron-vite-react/blob/main/vite.config.ts
 export default defineConfig(({ command }) => {
 	const isServe = command === 'serve';
-
-	// fs.rmSync('dist-electron', { recursive: true, force: true });
-
-	const alias = {
-		'@electron': path.join(__dirname, 'electron'),
-		'@public': path.join(__dirname, 'public'),
-		'@src': path.join(__dirname, 'src'),
-	};
 
 	const htmlEnvs = {
 		APP_TITLE: packageJson.productName,
@@ -23,13 +14,27 @@ export default defineConfig(({ command }) => {
 
 	const define = {
 		__IS_DEV__: JSON.stringify(isServe),
-		__PUBLIC_PATH__: JSON.stringify('.'),
 		__APP_TITLE__: JSON.stringify(htmlEnvs.APP_TITLE),
+		__PUBLIC_PATH__: JSON.stringify('.'),
 	};
 
 	return {
 		define,
-		resolve: { alias },
+		resolve: {
+			alias: {
+
+				// content
+				'~public': path.join(__dirname, 'public'),
+
+				// src
+				'~app': path.join(__dirname, 'src/app'),
+				'~features': path.join(__dirname, 'src/features'),
+				'~pages': path.join(__dirname, 'src/pages'),
+				'~entities': path.join(__dirname, 'src/entities'),
+				'~widgets': path.join(__dirname, 'src/widgets'),
+				'~shared': path.join(__dirname, 'src/shared'),
+			},
+		},
 		plugins: [react(), injectEnvHtml(htmlEnvs)],
 	};
 });
